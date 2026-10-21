@@ -40,7 +40,7 @@ setInterval(() => {
 // Klik karakter untuk menyapa
 const messages = [
   "Halo, selamat datang!",
-  "Aku penyu hijau dari Berau.",
+  "Aku penyu hijau.",
   "Coba lihat proyekku.",
   "Scroll ke bawah ya.",
   "Terima kasih sudah mampir!"
@@ -54,7 +54,7 @@ document.getElementById("spriteBtn").addEventListener("click", () => {
 
 // ===== Efek ketik pada tagline =====
 const typedEl = document.getElementById("typed");
-const lines = ["Menulis kode dengan tujuan.", "Mahasiswa Sistem Informasi.", "Suka membuat hal kecil yang berguna."];
+const lines = ["Suka membuat hal kecil yang berguna sesuai passion guaaaa."];
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if (reduceMotion) {
