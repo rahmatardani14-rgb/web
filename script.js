@@ -1,4 +1,3 @@
-// ===== Sprite penyu hijau khas Berau (pixel art) =====
 const COLORS = { s: "#1f6b4f", g: "#2f9a6a", G: "#5fc78f", y: "#d9c46b", Y: "#9a8531", k: "#06161c", w: "#f4fff9" };
 const SPRITE = [
   "........ssssssss........",
@@ -23,7 +22,7 @@ function drawSprite(eyesOpen = true) {
   SPRITE.forEach((row, y) => {
     [...row].forEach((ch, x) => {
       if (ch === ".") return;
-      // Mata tertutup: pixel mata jadi warna kulit
+      
       sctx.fillStyle = ch === "k" && !eyesOpen ? COLORS.Y : COLORS[ch];
       sctx.fillRect(x, y, 1, 1);
     });
@@ -31,13 +30,11 @@ function drawSprite(eyesOpen = true) {
 }
 drawSprite();
 
-// Berkedip tiap beberapa detik
 setInterval(() => {
   drawSprite(false);
   setTimeout(() => drawSprite(true), 160);
 }, 3200);
 
-// Klik karakter untuk menyapa
 const messages = [
   "Halo, selamat datang!",
   "Aku penyu hijau.",
@@ -52,7 +49,6 @@ document.getElementById("spriteBtn").addEventListener("click", () => {
   msgIndex = (msgIndex + 1) % messages.length;
 });
 
-// ===== Efek ketik pada tagline =====
 const typedEl = document.getElementById("typed");
 const lines = ["Suka membuat hal kecil yang berguna sesuai passion guaaaa."];
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -71,7 +67,6 @@ if (reduceMotion) {
   })();
 }
 
-// ===== Bintang berkelap-kelip =====
 const canvas = document.getElementById("stars");
 const ctx = canvas.getContext("2d");
 let stars = [];
@@ -101,7 +96,6 @@ initStars();
 drawStars();
 window.addEventListener("resize", () => { initStars(); if (reduceMotion) drawStars(); });
 
-// ===== Skill bar terisi saat terlihat =====
 const skillObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -112,7 +106,6 @@ const skillObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.4 });
 document.querySelectorAll(".skill").forEach(s => skillObserver.observe(s));
 
-// ===== Menu mobile & penanda menu aktif =====
 const menu = document.getElementById("menu");
 const menuBtn = document.getElementById("menuBtn");
 menuBtn.addEventListener("click", () => {
@@ -134,7 +127,6 @@ const sectionObserver = new IntersectionObserver(entries => {
 }, { rootMargin: "-40% 0px -55% 0px" });
 document.querySelectorAll("main section[id]").forEach(s => sectionObserver.observe(s));
 
-// ===== Game: Petualangan Penyu =====
 (function () {
   const $ = id => document.getElementById(id);
   const cv = $("gameCanvas"), g = cv.getContext("2d");
@@ -175,7 +167,6 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
     shark: makeSprite(SHARK, { g: "#6b8fa3", w: "#dfeaf0", k: "#06161c" }, 3)
   };
 
-  // ----- Suara 8-bit -----
   let actx = null, muted = false;
   function beep(f, d, type, vol, slide, delay) {
     if (muted) return;
@@ -204,7 +195,6 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
     muteBtn.textContent = muted ? "Suara: mati" : "Suara: nyala";
   });
 
-  // ----- Data -----
   let best = 0;
   try { best = Number(localStorage.getItem("penyuBest")) || 0; } catch (e) {}
   hud.best.textContent = best;
@@ -229,7 +219,6 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
   }
   updateHud();
 
-  // ----- Kontrol -----
   const K = { left: false, right: false, up: false, down: false };
   const B = { left: false, right: false, up: false, down: false };
   const KEYMAP = { ArrowLeft: "left", a: "left", A: "left", ArrowRight: "right", d: "right", D: "right",
@@ -254,7 +243,6 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
   cv.addEventListener("pointermove", e => { if (target && state === "play") setTarget(e); });
   ["pointerup", "pointerleave", "pointercancel"].forEach(ev => cv.addEventListener(ev, () => { target = null; }));
 
-  // ----- Logika -----
   function burst(x, y, color, n) {
     for (let i = 0; i < n; i++) S.parts.push({ x, y, vx: rand(-90, 90), vy: rand(-110, 40), life: rand(0.3, 0.6), c: color });
   }
@@ -321,11 +309,9 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
     ["inv", "shake", "flash", "magnet"].forEach(k => { if (S[k] > 0) S[k] = Math.max(0, S[k] - dt); });
     if (S.banner && (S.banner.t -= dt) <= 0) S.banner = null;
 
-    // Munculkan benda
     S.spawn -= dt;
     if (S.spawn <= 0) { spawnItem(); S.spawn = Math.max(0.28, 0.9 - S.level * 0.07); }
 
-    // Benda
     S.items.forEach(it => {
       it.y += it.v * dt;
       const edible = it.type === "jelly" || it.type === "gold";
@@ -340,7 +326,6 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
     });
     S.items = S.items.filter(it => !it.dead);
 
-    // Hiu (mulai level 3)
     if (S.level >= 3 && !S.shark && !S.warn) {
       S.sharkT -= dt;
       if (S.sharkT <= 0) { S.warn = { y: rand(40, H - 90), dir: Math.random() < 0.5 ? 1 : -1, t: 1.1 }; sfx.warn(); }
@@ -357,7 +342,6 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
       if (sh.x > W + 10 || sh.x < -sw - 10) S.shark = null;
     }
 
-    // Partikel
     S.parts.forEach(p => { p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 220 * dt; p.life -= dt; });
     S.parts = S.parts.filter(p => p.life > 0);
   }
@@ -376,7 +360,6 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
     g.fillStyle = "#c9ae6a"; g.fillRect(0, H - 22, W, 22);
     g.fillStyle = "#a88f52"; g.fillRect(0, H - 22, W, 4);
 
-    // Peringatan hiu
     if (S.warn && Math.floor(S.warn.t * 8) % 2 === 0) {
       g.fillStyle = "rgba(224,112,90,.25)"; g.fillRect(0, S.warn.y, W, img.shark.height);
       g.fillStyle = "#e0705a"; g.font = "bold 16px monospace";
@@ -392,7 +375,6 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
     }
     S.parts.forEach(p => { g.fillStyle = p.c; g.fillRect(Math.round(p.x), Math.round(p.y), 3, 3); });
 
-    // Penyu
     const tw = img.turtle.width, th = img.turtle.height;
     if (!(S.inv > 0 && Math.floor(S.inv * 12) % 2 === 0)) {
       g.save();
@@ -406,7 +388,6 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
     }
     g.restore();
 
-    // Info di kanvas
     g.font = "9px 'Press Start 2P', monospace"; g.textAlign = "left";
     if (S.magnet > 0) { g.fillStyle = "#f29b4b"; g.fillText("MAGNET " + Math.ceil(S.magnet), 8, 18); }
     if (S.banner) {
@@ -449,7 +430,6 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
   draw(0);
 })();
 
-// ===== Kartu nama tergantung: ayunan, bisa ditarik, klik ganti foto =====
 (function () {
   const hang = document.getElementById("hang"), swing = document.getElementById("swing");
   const badge = document.getElementById("badge"), img = document.getElementById("photo"), hint = document.getElementById("photoHint");
@@ -461,7 +441,7 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
     pixel = !pixel;
     img.src = pixel ? "foto-pixel.png" : "foto-asli.jpg";
     img.classList.toggle("real", !pixel);
-    hint.textContent = pixel ? "Tarik kartunya, klik untuk foto asli" : "Klik lagi untuk kembali ke pixel";
+    hint.textContent = pixel ? "Klik foto untuk foto asli" : "Klik lagi untuk kembali ke pixel";
   }
   badge.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
 
@@ -480,7 +460,7 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
   function release() {
     if (!dragging) return;
     dragging = false; badge.classList.remove("dragging");
-    if (moved < 6) { toggle(); vel += 1.8; } // klik: foto berganti dan kartu terdorong
+    if (moved < 6) { toggle(); vel += 1.8; } 
   }
   badge.addEventListener("pointerup", release);
   badge.addEventListener("pointercancel", release);
@@ -505,7 +485,6 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
   })(last);
 })();
 
-// ===== Ikon pixel (skill dan kontak) =====
 (function () {
   const F = { // font 3x5
     "<": ["..#", ".#.", "#..", ".#.", "..#"], ">": ["#..", ".#.", "..#", ".#.", "#.."],
@@ -514,13 +493,13 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
     Q: ["###", "#.#", "#.#", "###", "..#"], L: ["#..", "#..", "#..", "#..", "###"],
     D: ["##.", "#.#", "#.#", "#.#", "##."]
   };
-  // Ikon bergaya tile: warna latar, warna huruf, teks, skala huruf
+
   const TILES = {
     html: ["#e34f26", "#ffffff", "<>", 2], css: ["#2965f1", "#ffffff", "{}", 2],
     js: ["#f7df1e", "#1a1a1a", "JS", 2], mysql: ["#00758f", "#ffffff", "SQL", 1],
     ds: ["#5fd6c9", "#06222b", "DS", 2]
   };
-  // Ikon gambar tangan
+
   const MAPS = {
     java: { c: "#5382a1", r: "#f2705a", b: "#8fb3cc", rows: [
       ".......r........", "......r.........", ".......r........", "......r.........", "................",
@@ -551,7 +530,7 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
     const key = cv.dataset.ico;
     if (TILES[key]) {
       const [bg, fg, text, sc] = TILES[key];
-      // Latar bersudut tumpul 1px
+      
       ctx.fillStyle = bg;
       ctx.fillRect(0, 1, 16, 14); ctx.fillRect(1, 0, 14, 16);
       const glyphs = [...text].map(c => F[c]);
@@ -571,7 +550,6 @@ document.querySelectorAll("main section[id]").forEach(s => sectionObserver.obser
   });
 })();
 
-// ===== Form saran dan masukan (dikirim ke email lewat FormSubmit) =====
 (function () {
   const form = document.getElementById("feedbackForm");
   if (!form) return;
