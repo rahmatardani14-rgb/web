@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rahmat Ardani | Website Pribadi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <header class="nav">
+    <a href="#home" class="logo" aria-label="RA Dev, ke atas">RA<span>.<b class="spin">Dev</b></span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Buka menu" aria-expanded="false">MENU</button>
+    <nav id="menu">
+      <a href="#about">Tentang</a>
+      <a href="#skills">Skill</a>
+      <a href="#projects">Proyek</a>
+      <a href="#game">Game</a>
+      <a href="#contact">Kontak</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-grid">
+        <div class="photo-col">
+          <div class="hang" id="hang">
+            <div class="swing" id="swing">
+              <div class="strap" aria-hidden="true"></div>
+              <div class="badge" id="badge" tabindex="0" role="button" aria-label="Kartu nama. Tarik untuk mengayun, klik untuk ganti foto pixel dan foto asli">
+                <span class="clip" aria-hidden="true"></span>
+                <div class="badge-card">
+                  <span class="slot" aria-hidden="true"></span>
+                  <img id="photo" src="foto-pixel.png" alt="Foto Muhammad Rahmat Ardani" width="448" height="560" draggable="false">
+                  <p class="b-name">MUHAMMAD RAHMAT ARDANI</p>
+                  <p class="b-role">nama panggilan RAHMAT</p>
+                  <span class="barcode" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="small" id="photoHint">Tarik kartunya, klik untuk foto asli</p>
+        </div>
+        <div class="intro">
+          <p class="hello">Halo, saya</p>
+          <h1 class="title">MUHAMMAD RAHMAT <span>ARDANI</span></h1>
+          <p class="tagline"><span id="typed"></span><i class="cursor"></i></p>
+          <div class="mascot">
+            <button class="sprite-btn" id="spriteBtn" aria-label="Klik penyu untuk menyapa">
+              <canvas id="sprite" width="24" height="10"></canvas>
+            </button>
+            <p class="bubble" id="bubble" role="status">Klik aku!</p>
+          </div>
+          <div class="cta">
+            <a href="#projects" class="btn">Lihat proyek</a>
+            <a href="#contact" class="btn alt">Kontak</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>Tentang saya</h2>
+      <div class="panel">
+        <p>Halo, saya Muhammad Rahmat Ardani. Seorang profesional yang dinamis dengan latar belakang sebagai lulusan S1 Kedokteran, yang saat ini terus memperluas wawasan dan keahlian dengan menempuh studi di bidang Sistem Informasi Universitas Terbuka (UPBJJ Samarinda).</p>
+        <p>Perpaduan unik antara pemahaman dunia medis dan teknologi informasi ini memperkaya sudut pandang saya dalam melihat berbagai tantangan. Pengalaman kerja saya di instansi pemerintahan khususnya dalam penyusunan dokumen strategis dan pengelolaan proyek infrastruktur organisasi di Dinas Kesehatan Kabupaten Berau membuat saya terbiasa menggabungkan ketelitian administratif, analisis klinis, dan solusi berbasis digital. Saya memiliki ketertarikan mendalam pada efisiensi sistem kesehatan, manajemen proyek, serta bagaimana inovasi teknologi dapat diimplementasikan untuk memberikan dampak nyata bagi pelayanan publik dan masyarakat.</p>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>Skill</h2>
+      <div class="panel skills">
+        <div class="skill" data-level="75"><span class="skill-name"><canvas class="ico" data-ico="html" width="16" height="16"></canvas>HTML</span><div class="bar"><i></i></div></div>
+        <div class="skill" data-level="70"><span class="skill-name"><canvas class="ico" data-ico="css" width="16" height="16"></canvas>CSS</span><div class="bar"><i></i></div></div>
+        <div class="skill" data-level="60"><span class="skill-name"><canvas class="ico" data-ico="js" width="16" height="16"></canvas>JavaScript</span><div class="bar"><i></i></div></div>
+        <div class="skill" data-level="80"><span class="skill-name"><canvas class="ico" data-ico="java" width="16" height="16"></canvas>Java</span><div class="bar"><i></i></div></div>
+        <div class="skill" data-level="75"><span class="skill-name"><canvas class="ico" data-ico="mysql" width="16" height="16"></canvas>MySQL</span><div class="bar"><i></i></div></div>
+        <div class="skill" data-level="65"><span class="skill-name"><canvas class="ico" data-ico="ds" width="16" height="16"></canvas>Struktur data</span><div class="bar"><i></i></div></div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Proyek</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>ERD Rumah Sakit</h3>
+          <p>Rancangan basis data untuk dokter, pasien, pendaftaran, dan resep.</p>
+          <p class="tags">ERD, Basis Data</p>
+          <a href="#" class="link">Lihat detail</a>
+        </article>
+        <article class="card">
+          <h3>MySQL</h3>
+          <p>ERD diterapkan menjadi 6 tabel MySQL lengkap dengan relasi.</p>
+          <p class="tags">MySQL</p>
+          <a href="#" class="link">Lihat detail</a>
+        </article>
+        <article class="card">
+          <h3>Sistem Informasi</h3>
+          <p>Membangun aplikasi atau manajemen stok dengan PHP dan MySQL.</p>
+          <p class="tags">Java, PHP, MySQL, Algoritma</p>
+          <a href="#" class="link">Lihat detail</a>
+        </article>
+          <article class="card">
+          <h3>Website</h3>
+          <p>Membuat website profil, blog menggunakan HTML/CSS/JS.</p>
+          <p class="tags">Java, HTML, CSS</p>
+          <a href="#" class="link">Lihat detail</a>
+        </article>
+          <article class="card">
+          <h3>Dokumentasi Business Requirements Documents & Diagram UML</h3>
+          <p>Studi kasus perancangan sistem dari nol mualai dari Use Case, Flowchart, dan ERD.</p>
+          <p class="tags">Basis Data, ERD</p>
+          <a href="#" class="link">Lihat detail</a>
+        </article>
+          <article class="card">
+          <h3>Prototyping UI/UX</h3>
+          <p>Desain wireframe dan mockup aplikasi menggunakan Figma yang dilengkapi dengan riset pengguna.</p>
+          <p class="tags">Java, HTML, CSS</p>
+          <a href="#" class="link">Lihat detail</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="game" class="section">
+      <h2>Game</h2>
+      <div class="panel game">
+        <p>Petualangan Penyu: makan ubur-ubur, hindari plastik dan hiu. Bintang laut jadi magnet, kerang jadi perisai.</p>
+        <div class="hud">
+          <span>Skor <b id="gScore">0</b></span>
+          <span>Nyawa <b id="gLives">3</b></span>
+          <span>Level <b id="gLevel">1</b></span>
+          <span>Kombo <b id="gCombo">x1</b></span>
+          <span>Rekor <b id="gBest">0</b></span>
+        </div>
+        <div class="game-wrap">
+          <canvas id="gameCanvas" width="320" height="420" aria-label="Area game penyu"></canvas>
+          <div class="overlay" id="gameOverlay">
+            <p id="gameMsg">Gerakkan penyu ke segala arah dengan panah atau WASD, atau geser jari di layar.</p>
+            <button class="btn" id="gameStart">Main</button>
+          </div>
+        </div>
+        <div class="pad">
+          <button class="btn" id="btnLeft" aria-label="Kiri">Kiri</button>
+          <button class="btn" id="btnUp" aria-label="Atas">Atas</button>
+          <button class="btn" id="btnDown" aria-label="Bawah">Bawah</button>
+          <button class="btn" id="btnRight" aria-label="Kanan">Kanan</button>
+        </div>
+        <button class="btn mini" id="btnMute">Suara: nyala</button>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-sec">
+      <h2>Kontak</h2>
+      <div class="panel contact">
+        <div class="socials">
+          <a class="social" href="https://instagram.com/USERNAME_INSTAGRAM" target="_blank" rel="noopener" aria-label="Instagram"><canvas class="ico" data-ico="instagram" width="16" height="16"></canvas><span>Instagram</span></a>
+          <a class="social" href="https://github.com/USERNAME_GITHUB" target="_blank" rel="noopener" aria-label="GitHub"><canvas class="ico" data-ico="github" width="16" height="16"></canvas><span>GitHub</span></a>
+          <a class="social" href="https://discord.com/users/ID_DISCORD" target="_blank" rel="noopener" aria-label="Discord"><canvas class="ico" data-ico="discord" width="16" height="16"></canvas><span>Discord</span></a>
+        </div>
+
+        <form id="feedbackForm" class="feedback" novalidate>
+          <h3>Saran dan masukan</h3>
+          <label for="fbName">Nama</label>
+          <input id="fbName" name="name" type="text" maxlength="60" placeholder="Nama Anda (boleh dikosongkan)" autocomplete="name">
+          <label for="fbMsg">Pesan</label>
+          <textarea id="fbMsg" name="message" rows="4" maxlength="1000" placeholder="Tulis saran atau masukan Anda" required></textarea>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="honey" aria-hidden="true">
+          <button type="submit" class="btn" id="fbBtn">Kirim</button>
+          <p class="status" id="fbStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>&copy; 2026 Muhammad Rahmat Ardani</footer>
+  <script src="script.js"></script>
+</body>
+</html>
